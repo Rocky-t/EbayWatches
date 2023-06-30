@@ -5,10 +5,6 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-#some defaults
-kw = {"bulova", "seiko5","invicta","watch"}
-ebay = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=watch&_sacat=0&_sop=10&LH_BIN=1&rt=nc&_udhi=100"
-
 #returns a webpage from a url
 def getHTMLdocument(url):
     response = requests.get(url)
@@ -20,10 +16,9 @@ def has_keyword(listing, keywords):
 
 #will return a few ebay listing objects
 class ebay_getter:
-    def __init__(self, link:str=ebay,keywords:set=kw,price_limit:float=float('inf')):
+    def __init__(self, link:str,keywords:set):
         self._link = link
         self._keywords=keywords
-        self._price_limit = price_limit
 
     def get_listings(self):
         soup = BeautifulSoup(getHTMLdocument(self._link), 'html.parser')
@@ -35,11 +30,11 @@ class ebay_getter:
         good_listings = []
         for item in listings:
             name = item.find("span", {"role": "heading"}).text
-            # if not name:
-            #     continue
+            if not name:
+                continue
             trigger = has_keyword(name, self._keywords)
-            # if len(trigger) == 0:
-            #     continue
+            if len(trigger) == 0:
+                continue
             image = item.find("img")['src']
             link = item.find("a")['href']
             price = item.find("span",{"class": "s-item__price"}).text 

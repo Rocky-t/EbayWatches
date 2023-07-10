@@ -1,4 +1,7 @@
 class lo:
+    """
+    A simple class to keep track of the important parts of an ebay listing
+    """
     def __init__(self, name, price, link, image, trigger):
         self._name = name
         self._price = price

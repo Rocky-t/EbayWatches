@@ -6,4 +6,4 @@ I enjoy antiquing and collecting watches, but as a student I seldom have the tim
 
 The data_management folder and models folder contain the early makings of a large NN for classifying watch images. With keyword search, all listings in which sellers aren't sure what they have are lost. I've created a database of nearly 100,000 labeled images and am working on a CNN classifier by brand.
 
-![screenshot](images/watchbot.PNG)
+<img src="images/watchbot.PNG" alt="watchbot in action" width="200"/>

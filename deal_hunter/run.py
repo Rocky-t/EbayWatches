@@ -12,8 +12,9 @@ class deal_hunter:
                 token,
                 chat_id,
                 keywords,
-                ebay_link,):
-        self._ebg = ebay_getter(link=ebay_link,keywords=keywords)
+                ebay_link,
+                negative_keywords):
+        self._ebg = ebay_getter(link=ebay_link,keywords=keywords,negative_keywords=negative_keywords)
         self._ebs = EbayScanner(token=token,chat_id=chat_id)
 
     def send_listings(self):

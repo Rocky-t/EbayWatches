@@ -16,11 +16,15 @@ KWD = {
        "padi":100,
        "lot":100,
       }
+
+NEGATIVE_KWS = {"women","women's","lady","lady's","quartz","ladies","womens","mickey"}
+
 EBAY = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=watch&_sacat=0&_sop=10&LH_BIN=1&_fsrp=1&rt=nc&LH_PrefLoc=3&_ipg=240"
 dh = deal_hunter(TOKEN,
                     CHAT_ID,
                     KWD,
-                    EBAY)
+                    EBAY,
+                    NEGATIVE_KWS)
 i = 0
 while True:
     i += 1

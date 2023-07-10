@@ -27,9 +27,10 @@ def get_float_price(price):
     return float(p)
 
 class ebay_getter:
-    def __init__(self, link:str,keywords:dict):
+    def __init__(self, link:str,keywords:dict,negative_keywords:dict={}):
         self._link = link
         self._keywords=keywords
+        self._negative_keywords = negative_keywords
         self._cur_top = None
         self._old_top = None
         self._links = set()
@@ -57,9 +58,8 @@ class ebay_getter:
                 print(name)
                 keys = {key for key in self._keywords}
                 trigger = has_keyword(name, keys)
-                negative_keywords = {"women","women's","lady","lady's","quartz","ladies","womens","mickey"}
                 #no triggers found or womens watch, move on
-                if len(trigger) == 0 or len(has_keyword(name,negative_keywords))>0:
+                if len(trigger) == 0 or len(has_keyword(name,self._negative_keywords))>0:
                     continue
                 price = get_float_price(item.find("span",{"class": "s-item__price"}).text)
                 if len(trigger) == 1 and self._keywords[list(trigger)[0]] < price:
